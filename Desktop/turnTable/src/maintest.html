@@ -1,0 +1,229 @@
+﻿<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=yes" />
+    <title>Techmation</title>
+
+    <link href="../style/reset.css" rel="stylesheet" type="text/css" />
+    <link href="../style/turnTable.css" rel="stylesheet" type="text/css" />
+
+
+    <script type="text/javascript" src="../script/jquery-1.11.3.min.js"></script>
+
+
+    <script type="text/javascript" src="../script/common.js"></script>
+
+    <script type="text/javascript" src="../script/opcxml.js"></script>
+
+
+    <script type="text/javascript" src="../script/turnTable.js"></script>
+
+
+	
+	
+</head>
+<body>
+
+<div id="header" >
+<div id="constrainer">
+    <div class="scrolltable">
+        <table class="header"><thead> 
+                        <th>
+                            工位
+                        </th>
+                        <th >
+                            位置
+                        </th>
+                        <th>
+                            速度
+                        </th>
+                        <th>
+                            加速度
+                        </th>
+                        <th>
+                            減速度
+                        </th>
+                        <th>
+                            加加速度
+                        </th>
+                    </thead></table>
+        <div class="body">
+            <table>
+                <tbody>
+               
+                   
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div class="leftside" >
+<div style="position:relative;width:500px;height:500px;margin-top:25px;margin-left:85px;  " >
+    <p style="position:absolute;"> 位置 </p>
+    <input   id="currentPosition" style="width:100px; height:50px position:absolute; margin-left:50px; "  />
+    <p style="position:absolute;margin-top:-18px;margin-left:170px;"> 速度 </p>
+    <input type="text" id="currentSpeed" style="position:absolute;margin-left:50px;width:100px;"/><label for="textbox"style="position:absolute;margin-left:130px;margin-top:4px;  font-size: 15px;" >/m</label>
+    <input type="button" id="btnleft1" value="-反轉" class="btn" style="position:absolute;margin-left:-120px;margin-top:40px;">
+
+    <input type="button" id="btnright1"class="btn" value="+正轉"style="position:absolute;margin-left:20px;margin-top:40px;">
+</div>
+<div style="  position: absolute;    top: 120px;">
+    <div id="15" style="margin-top:50px;margin-left:100px; width:150px; height:50px  ">
+          <input id="setSpeed" type="number" style="width:100px; height:30px;  border-radius: 20px;float:right ; text-align: center; "  />
+          <p  style="margin-top:12px ;display:inline-block" >速度</p>
+          <label for="textbox"style="position:absolute;margin-left:90px;margin-top:12px;  font-size: 15px;" >/m</label>
+    </div>
+    <div style="margin-left:80px; width:170px; height:50px  ">
+          <input id="setAddSpeed" type="number" style="width:100px; height:30px;  border-radius: 20px;float:right;text-align: center;  "  />
+          <p  style="margin-top:12px ;display:inline-block" >加速度</p>
+          <label for="textbox"style="position:absolute;margin-left:90px;margin-top:12px;  font-size: 15px;" >/m&sup2;</label>
+    </div>
+    <div style="margin-left:80px; width:170px; height:50px  ">
+          <input id="setSubSpeed" type="number" style="width:100px; height:30px;  border-radius: 20px;float:right;text-align: center;  "  />
+          <p  style="margin-top:12px ;display:inline-block" >減速度</p>
+          <label for="textbox"style="position:absolute;margin-left:90px;margin-top:12px;  font-size: 15px;" >/m&sup2;</label>
+    </div>
+    <div style="margin-left:80px; width:170px; height:50px  ">
+          <input id="setAddAddSpeed" type="number" style="width:100px; height:30px;  border-radius: 20px;float:right;text-align: center;  "  />
+          <p  style="margin-top:12px ;position:absolute; left:64px;  display:inline-block" >加加速度</p>
+          <label for="textbox"style="position:absolute;margin-left:140px;margin-top:12px;  font-size: 15px;" >/m&sup3;</label>
+    </div>
+<div style="margin-top:50px;  position: absolute;    left: 200px;    top: -50px;">
+       <div style="margin-top:50px;margin-left:100px; width:170px; height:50px  ">
+          <input id="setPosition" type="number" style="width:100px; height:30px;  border-radius: 20px;float:right;text-align: center; "  />
+
+          <p  style="margin-top:12px ;display:inline-block " >位置設定</p>
+          <button id="setPositionButton" style="position:absolute;margin-left:10px;margin-top:-45px">設定</button>
+    </div>
+    <div style="margin-left:100px; width:170px; height:50px  ">
+           <select  id="inputMethod"style="width:100px; height:30px; margin-top:6px ; border-radius: 20px;float:right ">
+              
+              <option value="1">單點輸入</option>
+               <option value="2">多點輸入</option>
+              
+            </select>
+          <p  style="margin-top:12px ;display:inline-block" >輸入方式</p>
+    </div>
+    <div style="margin-left:100px; width:170px; height:50px  ">
+           <select  id="turnMethod"style="width:100px; height:30px; margin-top:6px ; border-radius: 20px;float:right ">
+              
+
+
+              <option value="0">最短距離</option>
+              <option value="1">正轉</option>
+              <option  value="-1" >反轉</option>
+              
+            </select>
+          <p  style="margin-top:12px ;display:inline-block" >轉動方式</p>
+    </div>
+    <div style="margin-left:100px; width:170px; height:50px  ">
+          <input id="multiplePos" type="number" style="width:100px; height:30px;  border-radius: 20px;float:right;text-align: center;  "  />
+          <p  style="margin-top:12px ;display:inline-block" >工位數量</p>
+    </div>
+</div>
+</div>
+</div>
+
+
+    <span class="button" id="upperhide"><p>下   一    頁</p></span>
+
+</div>
+<div id="footer"  style="margin-top:0px; margin-left:150px;;width:100%;height:100%;">
+
+<div id="left" style="  position: absolute;">
+<div style="  position: absolute;    top: 20px;">
+    <p  style="position:absolute;margin-top:0px;margin-left:120px;" >震動設定</p>
+    <div id="15" style="margin-top:50px;margin-left:100px; width:150px; height:50px  ">
+        
+          <input id="setVibSpeed" type="number" style="width:100px; height:30px;  border-radius: 20px;float:right ; text-align: center; "  />
+          <p  style="margin-top:12px ;display:inline-block" >速度</p>
+          <label for="textbox"style="position:absolute;margin-left:90px;margin-top:12px;  font-size: 15px;" >/m</label>
+    </div>
+    <div style="margin-left:80px; width:170px; height:50px  ">
+          <input id="setVibAddSpeed" type="number" style="width:100px; height:30px;  border-radius: 20px;float:right;text-align: center;  "  />
+          <p  style="margin-top:12px ;display:inline-block" >加速度</p>
+          <label for="textbox"style="position:absolute;margin-left:90px;margin-top:12px;  font-size: 15px;" >/m&sup2;</label>
+    </div>
+    <div style="margin-left:80px; width:170px; height:50px  ">
+          <input id="setVibSubSpeed" type="number" style="width:100px; height:30px;  border-radius: 20px;float:right;text-align: center;  "  />
+          <p  style="margin-top:12px ;display:inline-block" >減速度</p>
+          <label for="textbox"style="position:absolute;margin-left:90px;margin-top:12px;  font-size: 15px;" >/m&sup2;</label>
+    </div>
+    <div style="margin-left:80px; width:170px; height:50px  ">
+          <input id="setVibAddAddSpeed" type="number" style="width:100px; height:30px;  border-radius: 20px;float:right;text-align: center;  "  />
+          <p  style="margin-top:12px ;position:absolute; left:64px;  display:inline-block" >加加速度</p>
+          <label for="textbox"style="position:absolute;margin-left:140px;margin-top:12px;  font-size: 15px;" >/m&sup3;</label>
+    </div>
+    <div style="margin-left:80px; width:170px; height:50px  ">
+          <input id="setVibAngle" type="number" style="width:100px; height:30px;  border-radius: 20px;float:right;text-align: center;  "  />
+          <p  style="position:absolute;left:64px;margin-top:12px ;display:inline-block" >震動角度</p>
+          <label for="textbox"style="position:absolute;left:230px;margin-top:8px;  font-size: 15px;" >  &deg;</label>
+    </div>
+    <div style="margin-left:80px; width:170px; height:50px  ">
+          <input id="setVibVibSpeed" type="number" style="width:100px; height:30px;  border-radius: 20px;float:right;text-align: center;  "  />
+          <p  style="position:absolute;margin-top:12px ;display:inline-block;left:64px;" >震動次數</p>
+          <label for="textbox"style="position:absolute;margin-left:90px;margin-top:12px;  font-size: 15px;" ></label>
+    </div>
+
+</div>
+
+</div>
+
+<div id="right" style="position: absolute;margin-top:0px;">
+    <div style="  position: absolute;    top: 20px;">
+    <p  style="position:absolute;margin-top:0px;margin-left:120px;" >離心設定</p>
+    <div id="15" style="margin-top:50px;margin-left:100px; width:150px; height:50px  ">
+        
+          <input id="setCenSpeed" type="number" style="width:100px; height:30px;  border-radius: 20px;float:right ; text-align: center; "  />
+          <p  style="margin-top:12px ;display:inline-block" >速度</p>
+          <label for="textbox"style="position:absolute;margin-left:90px;margin-top:12px;  font-size: 15px;" >/m</label>
+    </div>
+    <div style="margin-left:80px; width:170px; height:50px  ">
+          <input id="setCenAddSpeed" type="number" style="width:100px; height:30px;  border-radius: 20px;float:right;text-align: center;  "  />
+          <p  style="margin-top:12px ;display:inline-block" >加速度</p>
+          <label for="textbox"style="position:absolute;margin-left:90px;margin-top:12px;  font-size: 15px;" >/m&sup2;</label>
+    </div>
+    <div style="margin-left:80px; width:170px; height:50px  ">
+          <input id="setCenSubSpeed" type="number" style="width:100px; height:30px;  border-radius: 20px;float:right;text-align: center;  "  />
+          <p  style="margin-top:12px ;display:inline-block" >減速度</p>
+          <label for="textbox"style="position:absolute;margin-left:90px;margin-top:12px;  font-size: 15px;" >/m&sup2;</label>
+    </div>
+    <div style="margin-left:80px; width:170px; height:50px  ">
+          <input id="setCenAddAddSpeed" type="number" style="width:100px; height:30px;  border-radius: 20px;float:right;text-align: center;  "  />
+          <p  style="margin-top:12px ;position:absolute; left:64px;  display:inline-block" >加加速度</p>
+          <label for="textbox"style="position:absolute;margin-left:140px;margin-top:12px;  font-size: 15px;" >/m&sup3;</label>
+    </div>
+   <div id="timeZone" style=" position:absolute;top:200px;margin-left:50px;width:100px; height:150px ; display: flex;  align-items: center;
+      ">
+          
+          <p >時 間</p>
+         
+          <input id="day"  type="number" style="width:30px;"/>
+           <p  style="" >天</p>
+          <input id="hour" type="number" style="width:30px;"/>
+          <p  style="" >時</p>
+          <input id="minute"  type="number" style="width:30px;"/>
+           <p  style="" >分</p>
+          <input id="second" type="number" style="width:30px;"/>
+           <p  style="" >秒</p>
+          <input id="millisecond" type="number" style="width:40px;"/>
+         <p  style="" >毫秒</p>
+          <button onclick="setTime()"style="width:30px"> 設定</button>
+    </div>
+
+</div>
+
+
+
+</div>
+    <div>
+      
+    <span class="button" id="footerhide" style="width:100px;margin-top:475px;margin-left:370px" ><p >上    一    頁</p></span>
+
+    </div>
+
+
+</body>
+</html>
