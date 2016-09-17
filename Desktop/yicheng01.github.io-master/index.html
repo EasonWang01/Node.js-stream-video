@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<style type="text/css">
+	html{
+		width:100%;
+		height:100%;
+	}
+	body{
+		width:100%;
+		height:100%;
+	}
+	#menu{
+		text-align: center;
+		background: #30E496;
+		max-width: 65px;
+		font-family:Microsoft JhengHei;
+		border: 2px dashed black;
+	}
+	#menu:hover{
+		background:#00ffff;
+		transition:all 0.5s linear ;
+		 transform: scale(1.3);
+
+	}
+	#menuContent{
+		display: none;
+		flex-direction: column;
+		width: 32%;
+		height:100%;
+		border: 5px dashed black;
+	}
+	.menuItem:hover{
+		background: #99ffff;
+	}
+	a{
+	  text-decoration: none;
+	  color: black;
+	}
+	h1{
+		font-size:100%;
+	}
+
+
+</style>
+
+<body>
+	<div id="menu"><h3>選單</h3> </div>
+	<div id="menuContent"> 
+
+		<div id="home" class="menuItem" style="width: 100%;
+		align-items: center;"><h1  style="text-align: center">Home</h1></div>
+
+		<div id="About" class="menuItem" style="width: 100%;
+		align-items: center;"><h1 style="text-align: center">About</h1></div>
+		
+		<div id="Archive" class="menuItem" style="width: 100%;
+		align-items: center;"><h1 style="text-align: center">Archive</h1></div>
+
+		<div id="Github" class="menuItem" style="width: 100%;
+		align-items: center;"><h1 style="text-align: center">Github</h1></div>
+
+
+	</div>
+</body>
+
+
+<script type="text/javascript">
+	document.getElementById('menu').addEventListener('click',function(){
+		if(document.getElementById('menuContent').style.display!=='flex'){
+		  document.getElementById('menuContent').style.display = 'flex';
+		  document.getElementById('menu').style.display = 'none';
+	    }else{
+	      document.getElementById('menuContent').style.display = 'none';
+	    }
+	})
+window.addEventListener('click',function(e){
+	if(e.target.id!=='menu'&&e.target.innerHTML!=='選單'){
+		document.getElementById('menuContent').style.display = 'none';
+		document.getElementById('menu').style.display = 'block';
+	}
+
+})
+
+
+
+//選單導航
+document.getElementById('home').addEventListener('click',function(){
+	document.body.style.display = 'none';
+	 window.location.href ="./index.html";
+})
+
+document.getElementById('About').addEventListener('click',function(){
+	document.body.style.display = 'none';
+	 window.location.href ="http://www.w3schools.com";
+})
+
+
+</script>
+</html>
